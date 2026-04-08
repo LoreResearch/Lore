@@ -1,6 +1,6 @@
 {
   "name": "lore",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DeFi protocol research agent — scores Solana protocols on security, traction, tokenomics, team, and moat using Claude",
   "license": "MIT",
   "repository": {
@@ -32,6 +32,12 @@
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   },
+  "keywords": [
+    "solana",
+    "token-diligence",
+    "protocol-research",
+    "unlock-analysis"
+  ],
   "engines": {
     "node": ">=20.0.0",
     "bun": ">=1.2.0"
