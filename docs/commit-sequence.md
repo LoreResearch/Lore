@@ -10,3 +10,5 @@
 8. `docs(readme): add technical spec for diligence formulas`
 9. `design(svg): add memo board preview for token buyers`
 10. `chore(audit): add issue drafts and commit notes`
+
+Operational note: keep future diligence changes separated by scoring, data, and presentation so the memo history stays readable.

@@ -3,6 +3,7 @@
 Protocol diligence engine for Solana token buyers.
 
 Lore turns protocol research into a structured memo focused on governance concentration, fee retention, treasury runway, unlock pressure, and traction quality. It is designed for capital allocation, not for writing generic DeFi overviews.
+The bias is toward questions a token buyer actually has to underwrite, not questions that only fill a research thread.
 
 [![Build](https://img.shields.io/github/actions/workflow/status/LoreResearch/Lore/ci.yml?branch=master&style=flat-square&label=Build)](https://github.com/LoreResearch/Lore/actions)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)

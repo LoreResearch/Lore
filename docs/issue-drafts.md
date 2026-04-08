@@ -13,3 +13,5 @@ Title: `Unlock overhang needs recipient-aware weighting`
 
 Body:
 A 12% unlock to strategic backers is not the same as a 12% unlock to ecosystem rewards or market makers. The current model only prices magnitude. We should also price who receives the supply and how likely it is to hit the market.
+
+Backlog note: tie both issues to actual post-unlock price paths before changing the default model weights.
