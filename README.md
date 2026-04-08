@@ -14,6 +14,8 @@ Turn token research into a capital-allocation memo in one pass.
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square)
 
+Research Board • Comparison Strip • Operating Surfaces • What Lore Scores • Memo Anatomy • Technical Spec • Quick Start
+
 ## Research Board
 
 ![Lore research board](assets/preview-report.svg)
@@ -28,6 +30,14 @@ Turn token research into a capital-allocation memo in one pass.
 - `Comparison Strip`: keeps multiple Solana protocols on one allocation plane
 - `Diligence Score`: compresses five underwriting dimensions into one ranking
 - `Protocol Memo`: gives a buyer the exact reasons capital should move or wait
+
+## What Lore Feels Like To Use
+
+Lore is supposed to read like the first serious pass on a token, not like a tweet thread trying to sound smart.
+
+The board is useful when you already know the protocol name, the narrative, and the rough market interest, but you still need the hard part answered: does the token deserve capital once governance, treasury, unlocks, and fee quality are all put on the same page?
+
+That is the difference between interest and underwriting. Lore is built for the second one.
 
 ## What Lore Scores
 
@@ -57,6 +67,26 @@ Each Lore output is designed to be decision-ready.
 - `Runway`: how long the treasury can operate without stress
 - `Unlocks`: how much supply is about to hit the market
 - `Traction`: whether usage quality actually supports the token
+
+## What A Good Lore Memo Surfaces Fast
+
+### Governance Reality
+
+If the token is effectively controlled by a small insider circle, Lore should make that obvious. That does not automatically kill the idea, but it changes position sizing and how much trust you place in long-duration narratives.
+
+### Treasury Durability
+
+Protocols that need constant token support just to keep operating should not be mistaken for durable businesses. Lore highlights runway because teams with time can ship through bad market structure. Teams without time usually cannot.
+
+### Supply Pressure
+
+Unlocks matter most when demand is weak, monetization is shallow, and valuation is already stretched. Lore treats that combination as a serious drag, not a footnote.
+
+## Why Lore Is Useful To Buyers
+
+Most repo-level protocol explainers stop at "what this project does." Buyers need more than that. They need to know what makes the token fragile, what makes it durable, and what has to go right for the market to keep rewarding it.
+
+Lore compresses those questions into a format you can compare across multiple Solana names without pretending every protocol should be judged the same way.
 
 ## Technical Spec
 
