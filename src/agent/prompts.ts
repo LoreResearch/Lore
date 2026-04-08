@@ -8,6 +8,7 @@ Score dimensions:
 - treasuryRunway: can the team finance execution without forced token overhang
 - unlockOverhang: next-90-day supply pressure relative to valuation
 - tractionQuality: TVL, user activity, and recent demand quality
+- Treat weak governance plus heavy unlocks as a worse combination than either risk in isolation
 
 Verdict guide:
 - accumulate: strong multi-factor profile with no obvious governance or unlock landmine

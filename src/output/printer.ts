@@ -28,7 +28,7 @@ export function printReport(report: ResearchReport): void {
   const color = verdictColor(report.verdict);
 
   console.log(`\n${BOLD}${bar}${RESET}`);
-  console.log(`  ${BOLD}${CYAN}${report.protocolName.toUpperCase()}${RESET}  --  ${color}${BOLD}${report.verdict.toUpperCase()}${RESET}  (overall ${report.overallScore.toFixed(2)})`);
+  console.log(`  ${BOLD}${CYAN}${report.protocolName.toUpperCase()}${RESET}  --  ${color}${BOLD}${report.verdict.toUpperCase()}${RESET}  (allocation score ${report.overallScore.toFixed(2)})`);
   console.log(`${BOLD}${bar}${RESET}`);
 
   console.log(`\n  ${BOLD}DILIGENCE SCORES${RESET}`);
