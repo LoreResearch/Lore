@@ -2,8 +2,13 @@
 
 Protocol diligence engine for Solana token buyers.
 
-Lore turns protocol research into a structured memo focused on governance concentration, fee retention, treasury runway, unlock pressure, and traction quality. It is designed for capital allocation, not for writing generic DeFi overviews.
-The bias is toward questions a token buyer actually has to underwrite, not questions that only fill a research thread.
+Turn token research into a capital-allocation memo in one pass.
+
+`bun run dev`
+
+- scores governance concentration, fee retention, treasury runway, unlock pressure, and traction quality
+- ignores vanity TVL and narrative fluff that do not help underwrite the token
+- promotes protocols where demand quality can realistically absorb future supply
 
 [![Build](https://img.shields.io/github/actions/workflow/status/LoreResearch/Lore/ci.yml?branch=master&style=flat-square&label=Build)](https://github.com/LoreResearch/Lore/actions)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
@@ -17,13 +22,20 @@ The bias is toward questions a token buyer actually has to underwrite, not quest
 
 ![Lore protocol comparison](assets/preview-protocols.svg)
 
+## Operating Surfaces
+
+- `Research Board`: shows the current memo with governance, runway, and unlock context
+- `Comparison Strip`: keeps multiple Solana protocols on one allocation plane
+- `Diligence Score`: compresses five underwriting dimensions into one ranking
+- `Protocol Memo`: gives a buyer the exact reasons capital should move or wait
+
 ## What Lore Scores
 
 Lore uses a five-part diligence model:
 
 `overall = mean(governance, feeRetention, treasuryRunway, unlockOverhang, tractionQuality)`
 
-This shifts the question from “is the protocol popular” to “can the token absorb supply and still justify capital”.
+This shifts the question from "is the protocol popular" to "can the token absorb supply and still justify capital".
 
 ## Technical Spec
 
@@ -73,6 +85,13 @@ npm run dev
 
 - [Commit sequence](docs/commit-sequence.md)
 - [Issue drafts](docs/issue-drafts.md)
+
+## Support Docs
+
+- [Runbook](docs/runbook.md)
+- [Changelog](CHANGELOG.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security](SECURITY.md)
 
 ## License
 
