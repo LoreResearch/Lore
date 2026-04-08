@@ -37,6 +37,27 @@ Lore uses a five-part diligence model:
 
 This shifts the question from "is the protocol popular" to "can the token absorb supply and still justify capital".
 
+## The Questions Lore Forces
+
+Lore is not trying to replace deep protocol research. It is trying to force the core underwriting questions into one repeatable frame:
+
+- who really controls the token and governance surface
+- whether the business is monetizing or only attracting attention
+- how long the treasury can keep shipping without leaning on token supply
+- whether the next unlock window can be absorbed by real demand
+
+That is why Lore reads more like an allocation memo than a generic research thread.
+
+## Memo Anatomy
+
+Each Lore output is designed to be decision-ready.
+
+- `Governance`: who controls outcomes and how concentrated that control is
+- `Retention`: whether protocol usage turns into durable economics
+- `Runway`: how long the treasury can operate without stress
+- `Unlocks`: how much supply is about to hit the market
+- `Traction`: whether usage quality actually supports the token
+
 ## Technical Spec
 
 ### Governance
@@ -70,6 +91,12 @@ High next-90-day unlocks are treated as a hard drag unless valuation and demand 
 `tractionQuality = 0.45 * normalizedTVL + 0.30 * recentGrowth + 0.25 * activeUsage`
 
 Traction is not just TVL size. Growth quality matters.
+
+## Why Buyers Use Lore
+
+The point of Lore is not to say a protocol is "good." The point is to say whether the token still deserves capital after governance risk, treasury burn, and supply pressure are put in the same memo.
+
+That turns hype into something underwritable.
 
 ## Quick Start
 
