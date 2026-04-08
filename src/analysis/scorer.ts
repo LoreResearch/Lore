@@ -1,36 +1,38 @@
-import type { ProtocolMetrics, ResearchReport } from "../lib/types.js";
+import type { ProtocolMetrics, ResearchScores } from "../lib/types.js";
 
-export function scoreProtocol(
-  metrics: ProtocolMetrics
-): ResearchReport["scores"] {
-  // Security: audits present, longer history = higher score
-  const securityScore = Math.min(
-    1.0,
-    (metrics.audits.length * 0.25) + (metrics.launchDate ? 0.2 : 0)
+function clamp(value: number, min = 0, max = 1): number {
+  return Math.min(max, Math.max(min, value));
+}
+
+export function scoreProtocol(metrics: ProtocolMetrics): ResearchScores {
+  const feeMargin = metrics.feesUsd24h / Math.max(metrics.volumeUsd24h, 1);
+  const runwayMonths = metrics.monthlyBurnUsd > 0 ? metrics.treasuryUsd / metrics.monthlyBurnUsd : 60;
+  const mcapToTvl = metrics.mcapUsd && metrics.tvlUsd > 0 ? metrics.mcapUsd / metrics.tvlUsd : 2;
+
+  const governance = clamp(
+    0.45 * clamp(metrics.audits.length / 4) +
+    0.35 * clamp(1 - metrics.insiderOwnershipPct / 80) +
+    0.20 * clamp(metrics.launchDate ? 1 : 0.35)
+  );
+  const feeRetention = clamp(
+    0.55 * clamp(feeMargin / 0.015) +
+    0.45 * clamp(metrics.feesUsd24h / 250_000)
+  );
+  const treasuryRunway = clamp(runwayMonths / 24);
+  const unlockOverhang = clamp(
+    1 - (0.65 * clamp(metrics.unlockPct90d / 40) + 0.35 * clamp((mcapToTvl - 1) / 4))
+  );
+  const tractionQuality = clamp(
+    0.45 * clamp(metrics.tvlUsd / 400_000_000) +
+    0.30 * clamp((metrics.tvl7dChange + 25) / 50) +
+    0.25 * clamp(metrics.users24h / 20_000)
   );
 
-  // Traction: TVL and volume as proxies for user adoption
-  const tvlScore = Math.min(1.0, metrics.tvlUsd / 500_000_000);
-  const volumeScore = Math.min(1.0, metrics.volumeUsd24h / 10_000_000);
-  const tractionScore = (tvlScore * 0.6) + (volumeScore * 0.4);
-
-  // Tokenomics: presence of token + market cap relative to TVL
-  const hasToken = !!metrics.tokenSymbol;
-  const mcapToTvl = metrics.mcapUsd && metrics.tvlUsd
-    ? metrics.mcapUsd / metrics.tvlUsd
-    : null;
-  const tokenomicsScore = hasToken
-    ? mcapToTvl
-      ? Math.max(0, 1 - (mcapToTvl - 1) * 0.3)
-      : 0.5
-    : 0.3;
-
-  // Team and moat require agent assessment (defaults)
   return {
-    security: Math.round(securityScore * 100) / 100,
-    traction: Math.round(tractionScore * 100) / 100,
-    tokenomics: Math.round(Math.min(1, tokenomicsScore) * 100) / 100,
-    team: 0,
-    moat: 0,
+    governance: Number(governance.toFixed(2)),
+    feeRetention: Number(feeRetention.toFixed(2)),
+    treasuryRunway: Number(treasuryRunway.toFixed(2)),
+    unlockOverhang: Number(unlockOverhang.toFixed(2)),
+    tractionQuality: Number(tractionQuality.toFixed(2)),
   };
 }

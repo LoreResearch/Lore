@@ -9,7 +9,9 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     website: "https://kamino.finance",
     github: "https://github.com/Kamino-Finance",
     twitter: "https://twitter.com/kaminofinance",
-    description: "Automated liquidity management and lending on Solana",
+    description: "Capital-efficient lending, vaults, and liquidity strategies on Solana",
+    governanceModel: "foundation-led with public product cadence",
+    tokenUtility: "governance, fee alignment, ecosystem incentives",
     addedAt: Date.now(),
   },
   {
@@ -20,7 +22,9 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     website: "https://jito.network",
     github: "https://github.com/jito-labs",
     twitter: "https://twitter.com/jito_labs",
-    description: "MEV-enhanced liquid staking on Solana",
+    description: "MEV-enhanced liquid staking and blockspace infrastructure",
+    governanceModel: "token governance with validator-aligned ecosystem influence",
+    tokenUtility: "governance, value capture around MEV and staking flows",
     addedAt: Date.now(),
   },
   {
@@ -31,7 +35,9 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     website: "https://jup.ag",
     github: "https://github.com/jup-ag",
     twitter: "https://twitter.com/JupiterExchange",
-    description: "Best-price DEX aggregator and liquidity infrastructure on Solana",
+    description: "Routing, aggregation, launch surfaces, and front-end liquidity demand",
+    governanceModel: "large community token base with active product governance",
+    tokenUtility: "governance, launch alignment, ecosystem participation",
     addedAt: Date.now(),
   },
   {
@@ -42,7 +48,9 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     website: "https://marginfi.com",
     github: "https://github.com/mrgnlabs",
     twitter: "https://twitter.com/marginfi",
-    description: "Permissionless borrowing and lending protocol on Solana",
+    description: "Permissionless borrowing, points flywheel, and retail credit markets",
+    governanceModel: "team-led operations with growing community oversight",
+    tokenUtility: "ecosystem and governance optionality",
     addedAt: Date.now(),
   },
   {
@@ -53,7 +61,9 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     website: "https://drift.trade",
     github: "https://github.com/drift-labs",
     twitter: "https://twitter.com/DriftProtocol",
-    description: "Decentralized perpetuals and spot trading on Solana",
+    description: "Perpetuals, prediction-style flow, and exchange-style fee generation",
+    governanceModel: "protocol token with product-driven governance cadence",
+    tokenUtility: "governance and ecosystem coordination",
     addedAt: Date.now(),
   },
 ];
@@ -64,10 +74,10 @@ export function getAllProtocols(): ProtocolMeta[] {
   return [...PROTOCOL_REGISTRY, ...customProtocols];
 }
 
-export function addProtocol(p: ProtocolMeta): void {
-  customProtocols.push(p);
+export function addProtocol(protocol: ProtocolMeta): void {
+  customProtocols.push(protocol);
 }
 
 export function findProtocol(id: string): ProtocolMeta | undefined {
-  return getAllProtocols().find((p) => p.id === id);
+  return getAllProtocols().find((protocol) => protocol.id === id);
 }

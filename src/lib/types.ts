@@ -8,7 +8,7 @@ export type ProtocolCategory =
   | "launchpad"
   | "other";
 
-export type Chain = "solana" | "ethereum" | "base" | "arbitrum" | "sui";
+export type Chain = "solana";
 
 export interface ProtocolMeta {
   id: string;
@@ -19,6 +19,8 @@ export interface ProtocolMeta {
   github?: string;
   twitter?: string;
   description: string;
+  governanceModel: string;
+  tokenUtility: string;
   addedAt: number;
 }
 
@@ -26,11 +28,24 @@ export interface ProtocolMetrics {
   tvlUsd: number;
   tvl7dChange: number;
   volumeUsd24h: number;
+  feesUsd24h: number;
+  treasuryUsd: number;
+  monthlyBurnUsd: number;
   users24h: number;
   audits: string[];
   launchDate?: string;
   tokenSymbol?: string;
   mcapUsd?: number;
+  unlockPct90d: number;
+  insiderOwnershipPct: number;
+}
+
+export interface ResearchScores {
+  governance: number;
+  feeRetention: number;
+  treasuryRunway: number;
+  unlockOverhang: number;
+  tractionQuality: number;
 }
 
 export interface ResearchReport {
@@ -38,13 +53,7 @@ export interface ResearchReport {
   protocolId: string;
   protocolName: string;
   generatedAt: number;
-  scores: {
-    security: number;
-    traction: number;
-    tokenomics: number;
-    team: number;
-    moat: number;
-  };
+  scores: ResearchScores;
   overallScore: number;
   summary: string;
   bullishPoints: string[];

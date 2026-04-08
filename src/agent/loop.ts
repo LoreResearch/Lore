@@ -11,7 +11,7 @@ const client = new Anthropic({ apiKey: config.ANTHROPIC_API_KEY });
 const tools: Anthropic.Tool[] = [
   {
     name: "get_protocol_metadata",
-    description: "Get basic metadata about the protocol (category, chain, website, github)",
+    description: "Get protocol category, governance model, website, and token utility context",
     input_schema: {
       type: "object" as const,
       properties: { protocol_id: { type: "string" } },
@@ -20,7 +20,7 @@ const tools: Anthropic.Tool[] = [
   },
   {
     name: "get_protocol_metrics",
-    description: "Get on-chain metrics: TVL, 7d change, volume, audits, token data",
+    description: "Get TVL, fees, treasury, runway, insider ownership, and unlock metrics",
     input_schema: {
       type: "object" as const,
       properties: { protocol_id: { type: "string" } },
@@ -29,7 +29,7 @@ const tools: Anthropic.Tool[] = [
   },
   {
     name: "get_preliminary_scores",
-    description: "Get automatically computed scores based on available metrics (security, traction, tokenomics)",
+    description: "Get automatically computed diligence scores",
     input_schema: {
       type: "object" as const,
       properties: { protocol_id: { type: "string" } },
@@ -38,7 +38,7 @@ const tools: Anthropic.Tool[] = [
   },
   {
     name: "submit_research_report",
-    description: "Submit the final research report for this protocol",
+    description: "Submit the final protocol diligence memo",
     input_schema: {
       type: "object" as const,
       properties: {
@@ -46,13 +46,13 @@ const tools: Anthropic.Tool[] = [
         scores: {
           type: "object",
           properties: {
-            security: { type: "number" },
-            traction: { type: "number" },
-            tokenomics: { type: "number" },
-            team: { type: "number" },
-            moat: { type: "number" },
+            governance: { type: "number" },
+            feeRetention: { type: "number" },
+            treasuryRunway: { type: "number" },
+            unlockOverhang: { type: "number" },
+            tractionQuality: { type: "number" },
           },
-          required: ["security", "traction", "tokenomics", "team", "moat"],
+          required: ["governance", "feeRetention", "treasuryRunway", "unlockOverhang", "tractionQuality"],
         },
         summary: { type: "string" },
         bullish_points: { type: "array", items: { type: "string" } },
@@ -65,17 +65,14 @@ const tools: Anthropic.Tool[] = [
   },
 ];
 
-export async function runLoreAgent(
-  protocol: ProtocolMeta,
-  metrics: ProtocolMetrics | null
-): Promise<ResearchReport | null> {
+export async function runLoreAgent(protocol: ProtocolMeta, metrics: ProtocolMetrics | null): Promise<ResearchReport | null> {
   const preliminary = metrics ? scoreProtocol(metrics) : null;
   let report: ResearchReport | null = null;
 
   const messages: Anthropic.MessageParam[] = [
     {
       role: "user",
-      content: `Research protocol: ${protocol.name} (${protocol.id}) on ${protocol.chain}. Generate a complete research report.`,
+      content: `Research ${protocol.name} (${protocol.id}) as a token diligence memo. Focus on governance, fee retention, treasury runway, unlock pressure, and traction quality.`,
     },
   ];
 
@@ -103,12 +100,10 @@ export async function runLoreAgent(
       } else if (block.name === "get_protocol_metrics") {
         result = metrics ? JSON.stringify(metrics) : "metrics not available";
       } else if (block.name === "get_preliminary_scores") {
-        result = preliminary
-          ? JSON.stringify(preliminary)
-          : "insufficient data for preliminary scoring";
+        result = preliminary ? JSON.stringify(preliminary) : "insufficient data for preliminary scoring";
       } else if (block.name === "submit_research_report") {
         const scores = input.scores as ResearchReport["scores"];
-        const overall = Object.values(scores).reduce((a, b) => a + b, 0) / 5;
+        const overall = Object.values(scores).reduce((sum, value) => sum + value, 0) / 5;
         report = {
           id: crypto.randomUUID(),
           protocolId: input.protocol_id as string,
@@ -122,7 +117,7 @@ export async function runLoreAgent(
           watchItems: input.watch_items as string[],
           verdict: input.verdict as ResearchReport["verdict"],
         };
-        log.info(`Report: ${protocol.name} — score=${report.overallScore} verdict=${report.verdict}`);
+        log.info(`Memo: ${protocol.name} score=${report.overallScore} verdict=${report.verdict}`);
         result = JSON.stringify({ success: true, reportId: report.id });
       }
 

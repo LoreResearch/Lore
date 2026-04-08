@@ -1,114 +1,78 @@
-<div align="center">
-
 # Lore
 
-**DeFi protocol research agent.**
-Scores every major Solana protocol on security, traction, tokenomics, team, and moat. Tells you what's worth your capital.
+Protocol diligence engine for Solana token buyers.
+
+Lore turns protocol research into a structured memo focused on governance concentration, fee retention, treasury runway, unlock pressure, and traction quality. It is designed for capital allocation, not for writing generic DeFi overviews.
 
 [![Build](https://img.shields.io/github/actions/workflow/status/LoreResearch/Lore/ci.yml?branch=master&style=flat-square&label=Build)](https://github.com/LoreResearch/Lore/actions)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
-[![Built with Claude Agent SDK](https://img.shields.io/badge/Built%20with-Claude%20Agent%20SDK-cc7800?style=flat-square)](https://docs.anthropic.com/en/docs/agents-and-tools/claude-agent-sdk)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square)](https://www.typescriptlang.org/)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square)
 
-</div>
+## Research Board
 
----
+![Lore research board](assets/preview-report.svg)
 
-Most DeFi research is either too shallow (Twitter threads) or too deep (lengthy reports nobody finishes). What you actually need is a structured score: how safe is this protocol, is it growing, is the token fairly valued, who's building it, and can it be replicated?
+## Comparison Strip
 
-`Lore` fetches TVL, audit history, and protocol metadata from DefiLlama and GitHub. Claude scores each protocol across five dimensions, writes a research report with bullish/bearish/watch points, and assigns a verdict: accumulate, watch, or avoid. Reports refresh daily.
+![Lore protocol comparison](assets/preview-protocols.svg)
 
-```
-FETCH → SCORE → ANALYZE → REPORT → STORE
-```
+## What Lore Scores
 
----
+Lore uses a five-part diligence model:
 
-## Research Report
+`overall = mean(governance, feeRetention, treasuryRunway, unlockOverhang, tractionQuality)`
 
-![Lore Report](assets/preview-report.svg)
+This shifts the question from “is the protocol popular” to “can the token absorb supply and still justify capital”.
 
----
+## Technical Spec
 
-## Protocol Comparison
+### Governance
 
-![Lore Protocols](assets/preview-protocols.svg)
+`governance = 0.45 * auditDepth + 0.35 * insiderDispersion + 0.20 * operatingMaturity`
 
----
+Protocols with heavy insider ownership or weak audit posture lose points even if TVL is strong.
 
-## Architecture
+### Fee Retention
 
-```
-┌──────────────────────────────────────────────┐
-│          Protocol Registry                    │
-│  Built-in: Jupiter, Kamino, Jito, MarginFi  │
-│  Custom protocols via addProtocol()           │
-└──────────────────────┬───────────────────────┘
-                       ▼
-┌──────────────────────────────────────────────┐
-│          DefiLlama Data Layer                 │
-│  TVL · 7d change · volume · audits · mcap   │
-└──────────────────────┬───────────────────────┘
-                       ▼
-┌──────────────────────────────────────────────┐
-│         Preliminary Scorer                    │
-│  Auto-scores: security, traction, tokenomics │
-└──────────────────────┬───────────────────────┘
-                       ▼
-┌──────────────────────────────────────────────┐
-│          Claude Lore Agent                    │
-│  get_protocol_metadata → get_protocol_metrics│
-│  → get_preliminary_scores → submit_report    │
-└──────────────────────┬───────────────────────┘
-                       ▼
-┌──────────────────────────────────────────────┐
-│          Report Store + Printer               │
-│  Session cache · ranked table · score bars   │
-└──────────────────────────────────────────────┘
-```
+`feeRetention = 0.55 * feeMargin + 0.45 * normalizedFees`
 
----
+Usage only matters when it converts into protocol revenue that can support token value.
 
-## Score Dimensions
+### Treasury Runway
 
-| Dimension | What It Measures |
-|-----------|-----------------|
-| **Security** | Audits, exploit history, upgrade key custody |
-| **Traction** | TVL growth, active users, volume/TVL ratio |
-| **Tokenomics** | Inflation, value accrual, mcap/TVL |
-| **Team** | Track record, doxxed status, delivery |
-| **Moat** | Network effects, switching costs, differentiation |
+`runwayMonths = treasuryUsd / monthlyBurnUsd`
 
----
+`treasuryRunway = clamp(runwayMonths / 24)`
 
-## Usage
+Lore favors teams that can keep shipping without relying on immediate token supply overhang.
 
-```bash
-# Research all protocols in registry
-bun run dev
+### Unlock Overhang
 
-# Research a specific protocol
-bun run dev kamino
-bun run dev jupiter
-```
+`unlockOverhang = 1 - (0.65 * unlockPct90d + 0.35 * valuationStretch)`
 
----
+High next-90-day unlocks are treated as a hard drag unless valuation and demand are unusually strong.
+
+### Traction Quality
+
+`tractionQuality = 0.45 * normalizedTVL + 0.30 * recentGrowth + 0.25 * activeUsage`
+
+Traction is not just TVL size. Growth quality matters.
 
 ## Quick Start
 
 ```bash
 git clone https://github.com/LoreResearch/Lore
-cd Lore && bun install
+cd Lore
+npm install
 cp .env.example .env
-bun run dev
+npm run dev
 ```
 
----
+## Local Audit Docs
+
+- [Commit sequence](docs/commit-sequence.md)
+- [Issue drafts](docs/issue-drafts.md)
 
 ## License
 
 MIT
-
----
-
-*know what you're buying before you buy it.*

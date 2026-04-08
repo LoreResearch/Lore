@@ -18,14 +18,14 @@ export function getSummaryTable(): Array<{
   name: string;
   verdict: string;
   score: number;
-  security: number;
-  traction: number;
+  governance: number;
+  tractionQuality: number;
 }> {
   return getAllReports().map((r) => ({
     name: r.protocolName,
     verdict: r.verdict,
     score: r.overallScore,
-    security: r.scores.security,
-    traction: r.scores.traction,
+    governance: r.scores.governance,
+    tractionQuality: r.scores.tractionQuality,
   }));
 }
