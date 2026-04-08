@@ -2,6 +2,15 @@
   "name": "lore",
   "version": "0.1.0",
   "description": "DeFi protocol research agent — scores Solana protocols on security, traction, tokenomics, team, and moat using Claude",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoreResearch/Lore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LoreResearch/Lore/issues"
+  },
+  "homepage": "https://github.com/LoreResearch/Lore#readme",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
