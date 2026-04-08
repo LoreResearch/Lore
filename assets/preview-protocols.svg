@@ -2,7 +2,7 @@
   <rect width="960" height="420" fill="#EFE4D0"/>
   <rect x="30" y="28" width="900" height="364" rx="24" fill="#F8F2E7" stroke="#D8C9AF"/>
   <text x="56" y="72" fill="#243548" font-family="Arial, sans-serif" font-size="24" font-weight="700">Lore // Comparison Strip</text>
-  <text x="56" y="98" fill="#7C6E5B" font-family="Arial, sans-serif" font-size="13">capital allocation view across core Solana protocols</text>
+  <text x="56" y="98" fill="#7C6E5B" font-family="Arial, sans-serif" font-size="13">capital allocation strip across core Solana protocol tokens</text>
   <rect x="56" y="132" width="848" height="200" rx="18" fill="#FCF9F1" stroke="#D8C9AF"/>
   <text x="86" y="166" fill="#5C6C79" font-family="Arial, sans-serif" font-size="12">protocol</text>
   <text x="276" y="166" fill="#5C6C79" font-family="Arial, sans-serif" font-size="12">governance</text>
