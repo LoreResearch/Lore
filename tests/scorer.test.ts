@@ -31,6 +31,13 @@ describe("protocol registry", () => {
 });
 
 describe("protocol scorer", () => {
+  it("penalizes concentrated insider ownership inside governance scoring", async () => {
+    const { scoreProtocol } = await import("../src/analysis/scorer.js");
+    const dispersed = scoreProtocol(makeMetrics({ insiderOwnershipPct: 16 }));
+    const concentrated = scoreProtocol(makeMetrics({ insiderOwnershipPct: 58 }));
+    expect(dispersed.governance).toBeGreaterThan(concentrated.governance);
+  });
+
   it("rewards longer treasury runway", async () => {
     const { scoreProtocol } = await import("../src/analysis/scorer.js");
     const short = scoreProtocol(makeMetrics({ treasuryUsd: 6_000_000, monthlyBurnUsd: 1_500_000 }));
