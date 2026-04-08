@@ -16,6 +16,13 @@ Turn token research into a capital-allocation memo in one pass.
 
 Research Board • Comparison Strip • Operating Surfaces • What Lore Scores • Memo Anatomy • Technical Spec • Quick Start
 
+## At a Glance
+
+- `Use case`: token diligence and capital-allocation framing for Solana protocols
+- `Primary input`: governance, revenue retention, treasury runway, unlock pressure, traction quality
+- `Primary failure mode`: popular protocols with weak token underwriting
+- `Best for`: buyers who need a fast memo before deciding whether a token deserves capital
+
 ## Research Board
 
 ![Lore research board](assets/preview-report.svg)
@@ -68,6 +75,18 @@ Each Lore output is designed to be decision-ready.
 - `Unlocks`: how much supply is about to hit the market
 - `Traction`: whether usage quality actually supports the token
 
+## How It Works
+
+Lore is meant to turn raw protocol facts into a memo a buyer can actually use:
+
+1. normalize the protocol inputs into governance, economics, runway, unlock, and traction buckets
+2. score each bucket independently so one strong metric cannot hide another weak one
+3. compress the five buckets into one allocation view
+4. compare the memo against nearby protocols so the buyer sees relative quality, not just isolated facts
+5. print the reasons the token deserves capital, patience, or avoidance
+
+The output should read like a first underwriting pass, not like a generic protocol overview.
+
 ## What A Good Lore Memo Surfaces Fast
 
 ### Governance Reality
@@ -87,6 +106,22 @@ Unlocks matter most when demand is weak, monetization is shallow, and valuation 
 Most repo-level protocol explainers stop at "what this project does." Buyers need more than that. They need to know what makes the token fragile, what makes it durable, and what has to go right for the market to keep rewarding it.
 
 Lore compresses those questions into a format you can compare across multiple Solana names without pretending every protocol should be judged the same way.
+
+## Example Output
+
+```text
+LORE // TOKEN DILIGENCE MEMO
+
+protocol          JUP
+overall score     0.76
+governance        0.71
+fee retention     0.81
+runway            0.83
+unlock overhang   0.58
+traction quality  0.87
+
+allocation note: durable economics are strong, but next unlock window still matters
+```
 
 ## Technical Spec
 
@@ -127,6 +162,15 @@ Traction is not just TVL size. Growth quality matters.
 The point of Lore is not to say a protocol is "good." The point is to say whether the token still deserves capital after governance risk, treasury burn, and supply pressure are put in the same memo.
 
 That turns hype into something underwritable.
+
+## Risk Controls
+
+- `governance concentration penalty`: stops insider-heavy structures from hiding behind traction
+- `runway floor`: penalizes protocols that need token support just to keep operating
+- `unlock overhang penalty`: treats near-term supply pressure as a first-order risk
+- `quality weighting`: avoids over-rewarding raw TVL when monetization is weak
+
+Lore is strict because the cost of a bad token memo is not just being wrong. It is being wrong with conviction.
 
 ## Quick Start
 
