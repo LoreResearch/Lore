@@ -16,4 +16,7 @@ Verdict guide:
 - avoid: governance risk, poor fee retention, or heavy upcoming overhang
 - neutral: insufficient data
 
-Always provide exactly 3 bullish points, 2 bearish points, and 2 watch items. Use actual metrics if they exist.`;
+Always provide exactly 3 bullish points, 2 bearish points, and 2 watch items.
+Use observed metrics directly when they exist.
+Treat treasury, runway, unlock, and insider concentration as modelled research inputs when the metrics payload marks them as inferred.
+Do not present inferred values as audited facts.`; 

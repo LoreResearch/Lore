@@ -16,6 +16,19 @@ function makeMetrics(overrides: Partial<ProtocolMetrics> = {}): ProtocolMetrics 
     mcapUsd: 120_000_000,
     unlockPct90d: 9,
     insiderOwnershipPct: 22,
+    inputConfidence: 0.82,
+    metricSources: {
+      tvlUsd: "observed",
+      tvl7dChange: "observed",
+      volumeUsd24h: "observed",
+      feesUsd24h: "observed_or_inferred",
+      treasuryUsd: "inferred",
+      monthlyBurnUsd: "inferred",
+      users24h: "inferred",
+      launchDate: "registry",
+      unlockPct90d: "inferred",
+      insiderOwnershipPct: "inferred",
+    },
     ...overrides,
   };
 }
@@ -59,5 +72,12 @@ describe("protocol scorer", () => {
       expect(value).toBeGreaterThanOrEqual(0);
       expect(value).toBeLessThanOrEqual(1);
     }
+  });
+
+  it("discounts reports when input confidence is lower", async () => {
+    const { scoreProtocol } = await import("../src/analysis/scorer.js");
+    const high = scoreProtocol(makeMetrics({ inputConfidence: 0.9 }));
+    const low = scoreProtocol(makeMetrics({ inputConfidence: 0.45 }));
+    expect(high.tractionQuality).toBeGreaterThan(low.tractionQuality);
   });
 });

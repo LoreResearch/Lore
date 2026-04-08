@@ -12,6 +12,7 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     description: "Capital-efficient lending, vaults, and liquidity strategies on Solana",
     governanceModel: "foundation-led with public product cadence",
     tokenUtility: "governance, fee alignment, ecosystem incentives",
+    launchDate: "2022-08-01",
     addedAt: Date.now(),
   },
   {
@@ -25,6 +26,7 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     description: "MEV-enhanced liquid staking and blockspace infrastructure",
     governanceModel: "token governance with validator-aligned ecosystem influence",
     tokenUtility: "governance, value capture around MEV and staking flows",
+    launchDate: "2022-11-29",
     addedAt: Date.now(),
   },
   {
@@ -38,6 +40,7 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     description: "Routing, aggregation, launch surfaces, and front-end liquidity demand",
     governanceModel: "large community token base with active product governance",
     tokenUtility: "governance, launch alignment, ecosystem participation",
+    launchDate: "2021-10-01",
     addedAt: Date.now(),
   },
   {
@@ -51,6 +54,7 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     description: "Permissionless borrowing, points flywheel, and retail credit markets",
     governanceModel: "team-led operations with growing community oversight",
     tokenUtility: "ecosystem and governance optionality",
+    launchDate: "2023-02-01",
     addedAt: Date.now(),
   },
   {
@@ -64,6 +68,7 @@ export const PROTOCOL_REGISTRY: ProtocolMeta[] = [
     description: "Perpetuals, prediction-style flow, and exchange-style fee generation",
     governanceModel: "protocol token with product-driven governance cadence",
     tokenUtility: "governance and ecosystem coordination",
+    launchDate: "2021-10-15",
     addedAt: Date.now(),
   },
 ];

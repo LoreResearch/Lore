@@ -21,6 +21,7 @@ export interface ProtocolMeta {
   description: string;
   governanceModel: string;
   tokenUtility: string;
+  launchDate?: string;
   addedAt: number;
 }
 
@@ -38,6 +39,19 @@ export interface ProtocolMetrics {
   mcapUsd?: number;
   unlockPct90d: number;
   insiderOwnershipPct: number;
+  inputConfidence: number;
+  metricSources: {
+    tvlUsd: "observed";
+    tvl7dChange: "observed";
+    volumeUsd24h: "observed";
+    feesUsd24h: "observed_or_inferred";
+    treasuryUsd: "inferred";
+    monthlyBurnUsd: "inferred";
+    users24h: "inferred";
+    launchDate: "registry";
+    unlockPct90d: "inferred";
+    insiderOwnershipPct: "inferred";
+  };
 }
 
 export interface ResearchScores {

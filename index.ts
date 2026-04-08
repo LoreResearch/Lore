@@ -12,7 +12,7 @@ async function researchProtocol(protocolId: string): Promise<void> {
   if (!protocol) { log.warn(`Protocol not found: ${protocolId}`); return; }
 
   log.info(`Researching ${protocol.name}...`);
-  const metrics = await fetchProtocolMetrics(protocol.name).catch((e) => {
+  const metrics = await fetchProtocolMetrics(protocol).catch((e) => {
     log.warn(`Metrics fetch failed for ${protocol.name}:`, e.message);
     return null;
   });

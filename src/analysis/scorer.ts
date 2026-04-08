@@ -8,6 +8,7 @@ export function scoreProtocol(metrics: ProtocolMetrics): ResearchScores {
   const feeMargin = metrics.feesUsd24h / Math.max(metrics.volumeUsd24h, 1);
   const runwayMonths = metrics.monthlyBurnUsd > 0 ? metrics.treasuryUsd / metrics.monthlyBurnUsd : 60;
   const mcapToTvl = metrics.mcapUsd && metrics.tvlUsd > 0 ? metrics.mcapUsd / metrics.tvlUsd : 2;
+  const confidence = metrics.inputConfidence ?? 0.6;
 
   const governance = clamp(
     0.45 * clamp(metrics.audits.length / 4) +
@@ -27,12 +28,13 @@ export function scoreProtocol(metrics: ProtocolMetrics): ResearchScores {
     0.30 * clamp((metrics.tvl7dChange + 25) / 50) +
     0.25 * clamp(metrics.users24h / 20_000)
   );
+  const confidenceMultiplier = 0.75 + confidence * 0.25;
 
   return {
-    governance: Number(governance.toFixed(2)),
-    feeRetention: Number(feeRetention.toFixed(2)),
-    treasuryRunway: Number(treasuryRunway.toFixed(2)),
-    unlockOverhang: Number(unlockOverhang.toFixed(2)),
-    tractionQuality: Number(tractionQuality.toFixed(2)),
+    governance: Number((governance * confidenceMultiplier).toFixed(2)),
+    feeRetention: Number((feeRetention * confidenceMultiplier).toFixed(2)),
+    treasuryRunway: Number((treasuryRunway * confidenceMultiplier).toFixed(2)),
+    unlockOverhang: Number((unlockOverhang * confidenceMultiplier).toFixed(2)),
+    tractionQuality: Number((tractionQuality * confidenceMultiplier).toFixed(2)),
   };
 }
