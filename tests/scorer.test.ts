@@ -80,4 +80,12 @@ describe("protocol scorer", () => {
     const low = scoreProtocol(makeMetrics({ inputConfidence: 0.45 }));
     expect(high.tractionQuality).toBeGreaterThan(low.tractionQuality);
   });
+
+  it("clamps overconfident metric inputs to keep scores bounded", async () => {
+    const { scoreProtocol } = await import("../src/analysis/scorer.js");
+    const scores = scoreProtocol(makeMetrics({ inputConfidence: 2 }));
+    for (const value of Object.values(scores)) {
+      expect(value).toBeLessThanOrEqual(1);
+    }
+  });
 });

@@ -8,7 +8,7 @@ export function scoreProtocol(metrics: ProtocolMetrics): ResearchScores {
   const feeMargin = metrics.feesUsd24h / Math.max(metrics.volumeUsd24h, 1);
   const runwayMonths = metrics.monthlyBurnUsd > 0 ? metrics.treasuryUsd / metrics.monthlyBurnUsd : 60;
   const mcapToTvl = metrics.mcapUsd && metrics.tvlUsd > 0 ? metrics.mcapUsd / metrics.tvlUsd : 2;
-  const confidence = metrics.inputConfidence ?? 0.6;
+  const confidence = clamp(metrics.inputConfidence ?? 0.6);
 
   const governance = clamp(
     0.45 * clamp(metrics.audits.length / 4) +
