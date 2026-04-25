@@ -14,7 +14,7 @@ Turn token research into a capital-allocation memo in one pass.
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square)
 
-Live Diligence Board • Comparison Strip • Operating Surfaces • What Lore Scores • Memo Anatomy • Technical Spec • Quick Start
+Live Diligence Board • Operating Surfaces • What Lore Scores • Memo Anatomy • Technical Spec • Quick Start
 
 ## At a Glance
 
@@ -28,10 +28,6 @@ Live Diligence Board • Comparison Strip • Operating Surfaces • What Lore S
 <img src="assets/preview-main.png" alt="Lore Live Diligence Board" width="100%" />
 
 Live operating view for Lore: coverage queue across Solana DeFi protocols, Token Diligence Memo with five-bucket score breakdown, underwriting inputs, Bullish/Bearish/Action narrative, guardrails, and the agent's current ACCUMULATE, WATCH, or AVOID verdict.
-
-## Comparison Strip
-
-![Lore protocol comparison](assets/preview-protocols.svg)
 
 ## Operating Surfaces
 
