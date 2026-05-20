@@ -7,3 +7,6 @@ coverage/
 .DS_Store
 reports/
 site/
+# Local env overrides
+.env.local
+.env.*.local
